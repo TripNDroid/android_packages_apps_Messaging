@@ -108,10 +108,10 @@ version_code_package := $(base_version_major)$(base_version_minor)$(base_version
 ifdef TARGET_BUILD_APPS
 ifneq "" "$(filter eng.%,$(BUILD_NUMBER))"
   git_hash := $(shell git --git-dir $(LOCAL_PATH)/.git log -n 1 --pretty=format:%h)
-  date_string := $(shell date +%m%d%y_%H%M%S)
+  date_string := $$(date +%m%d%y_%H%M%S)
   version_name_package := $(base_version_major).$(base_version_minor).$(base_version_build) (eng.$(USER).$(git_hash).$(date_string)-$(base_version_arch)$(base_version_density))
 else
-  version_name_package := $(base_version_major).$(base_version_minor).$(base_version_build) ($(BUILD_NUMBER)-$(base_version_arch)$(base_version_density))
+  version_name_package := $(base_version_major).$(base_version_minor).$(base_version_build) ($(BUILD_NUMBER_FROM_FILE)-$(base_version_arch)$(base_version_density))
 endif
 else # !TARGET_BUILD_APPS
   version_name_package := $(base_version_major).$(base_version_minor).$(base_version_build)
